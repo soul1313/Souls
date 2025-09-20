@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WOW-страница</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;900&family=Playfair+Display:wght@700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+      background: radial-gradient(circle at 30% 30%, #ff00cc, transparent 50%),
+                  radial-gradient(circle at 70% 70%, #3333ff, transparent 50%),
+                  linear-gradient(135deg, #1e0033, #000011);
+      color: white;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Переливающиеся линии */
+    .gradient-overlay {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255,255,255,0.2) 0%, transparent 60%);
+      mix-blend-mode: overlay;
+      animation: shine 8s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    @keyframes shine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Частицы */
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .stars span {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 5s infinite ease-in-out;
+    }
+    @keyframes twinkle {
+      0%,100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    /* Центральный блок */
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 3rem 4rem;
+      border-radius: 2rem;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 0 30px rgba(255,255,255,0.3),
+                  inset 0 0 40px rgba(255,255,255,0.05);
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); } /* уменьшена амплитуда */
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      text-shadow: 0 0 15px #ff00ff, 0 0 30px #00ffff;
+      margin-bottom: 1rem;
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 15px #ff00ff, 0 0 30px #00ffff; }
+      to   { text-shadow: 0 0 40px #ff99ff, 0 0 70px #66ffff; }
+    }
+
+    p {
+  font-size: 1.4rem;
+  opacity: 0.85;
+  margin-bottom: 1rem;
+  word-wrap: break-word;   /* перенос длинных слов */
+  overflow-wrap: break-word;
+}
+
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #ff00cc, #3333ff);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      box-shadow: 0 0 20px rgba(255,0,255,0.7), 0 0 40px rgba(0,200,255,0.7);
+      transition: all .3s ease;
+      margin-top: 1rem;
+    }
+    .btn:hover {
+      transform: scale(1.1) rotate(-1deg);
+      box-shadow: 0 0 40px rgba(255,0,255,1), 0 0 70px rgba(0,200,255,1);
+    }
+  </style>
+</head>
+<body>
+  <div class="gradient-overlay"></div>
+  <div class="stars" id="stars"></div>
+
+  <div class="container">
+    <h1>Добро пожаловать на сборник информации, по програмированию Soul💗</h1>
+    <p>Здесь есть разделы с видио уроками, тестовоми заданиями и многое другое ✨</p>
+
+    <!-- Много текста для скролла -->
+    <p>Это полностью БЕСПЛАТНЫЙ сборник, собравший в себе, бесплатные форумы для обучения по програмированию</p>
+   
+    
+    <a href="index.html" class="btn">Вернуться назад</a>
+  </div>
+
+  <script>
+    // Создаём множество звёзд
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 80; i++) {
+      let star = document.createElement('span');
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.animationDuration = (2 + Math.random() * 4) + 's';
+      starsContainer.appendChild(star);
+    }
+  </script>
+</body>
+</html>
