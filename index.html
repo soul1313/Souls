@@ -20,33 +20,26 @@
       --muted: #cfcfe6;
       --shadow: 0 20px 60px rgba(0,0,0,.45);
     }
-
-    /* Global reset */
     * { box-sizing: border-box; }
     html, body { height: 100%; }
     body {
       margin: 0;
-      font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      font-family: 'Montserrat', sans-serif;
       color: var(--text);
       background: radial-gradient(1200px 800px at 75% 15%, #2a145b22, transparent 60%),
                   radial-gradient(1200px 800px at 25% 85%, #0bd3ff22, transparent 60%),
                   linear-gradient(120deg, var(--bg1), var(--bg2));
       overflow-x: hidden;
     }
-
-    /* Canvas-like animated gradient aurora */
     .aurora {
       position: fixed; inset: -20vmax; pointer-events: none; z-index: 0;
       filter: blur(50px) saturate(140%);
       opacity: .9;
-      background: conic-gradient(from 180deg at 50% 50%,
-        #ff5bd622, #7a5bff33, #5be7ff22, #baff5b22, #ff8a5b33, #ff5bd622);
+      background: conic-gradient(from 180deg at 50% 50%, #ff5bd622, #7a5bff33, #5be7ff22, #baff5b22, #ff8a5b33, #ff5bd622);
       animation: swirl 18s linear infinite;
       mask-image: radial-gradient(70% 70% at 50% 50%, black 40%, transparent 70%);
     }
     @keyframes swirl { to { transform: rotate(360deg) scale(1.2); } }
-
-    /* Subtle moving stars */
     .stars, .stars:after, .stars:before {
       content: ""; position: fixed; inset: 0; z-index: 1; pointer-events:none;
       background-image:
@@ -60,8 +53,6 @@
     .stars:before { animation-duration: 180s; opacity: .5; filter: blur(1px); }
     .stars:after  { animation-duration: 90s;  opacity: .7; }
     @keyframes drift { from { transform: translateY(0); } to { transform: translateY(-20vh); } }
-
-    /* Morphing neon blob */
     .blob {
       position: absolute; top: 10%; left: 5%; width: 40vmax; height: 40vmax; z-index: 2;
       background: radial-gradient(circle at 30% 30%, var(--acc1), transparent 55%),
@@ -70,15 +61,12 @@
       mix-blend-mode: screen; filter: blur(35px) saturate(150%);
       border-radius: 40% 60% 65% 35% / 40% 30% 70% 60%;
       animation: morph 20s ease-in-out infinite alternate;
-      transform: translateZ(0);
     }
     @keyframes morph {
       0% { border-radius: 40% 60% 65% 35% / 40% 30% 70% 60%; transform: translate(0,0) scale(1); }
       50%{ border-radius: 60% 40% 35% 65% / 60% 70% 30% 40%; transform: translate(4vmin,-2vmin) scale(1.05); }
       100%{ border-radius: 45% 55% 60% 40% / 35% 65% 40% 60%; transform: translate(-3vmin,2vmin) scale(1.08); }
     }
-
-    /* Glass hero card */
     .wrap { position: relative; z-index: 3; display: grid; min-height: 100svh; place-items: center; padding: 8vmin 4vmin; }
     .hero {
       width: min(1100px, 92vw);
@@ -91,66 +79,51 @@
       position: relative;
       overflow: clip;
     }
-
     .hero:before, .hero:after {
       content: ""; position: absolute; inset: -1px; border-radius: 28px; pointer-events:none;
     }
-    .hero:before { background: radial-gradient(550px 220px at 15% 10%, #ffffff22, transparent 60%);
-                   mix-blend-mode: overlay; }
+    .hero:before { background: radial-gradient(550px 220px at 15% 10%, #ffffff22, transparent 60%); mix-blend-mode: overlay; }
     .hero:after { border: 1px solid rgba(255,255,255,.16); mask: linear-gradient(white,transparent 60%); }
-
     .topbar { display: flex; align-items: center; gap: .8rem; margin-bottom: 1.25rem; opacity: .9; }
     .dot { width: 12px; height: 12px; border-radius: 999px; background: #ff5f57; box-shadow: 20px 0 0 #ffbd2e, 40px 0 0 #28c840; }
     .crumbs { margin-left: auto; font-size: .85rem; color: var(--muted); letter-spacing: .04em; }
-
     h1 {
       margin: 0 0 .6rem; line-height: .95;
-      font-family: 'Playfair Display', serif;
-      font-weight: 900;
+      font-family: 'Playfair Display', serif; font-weight: 900;
       font-size: clamp(2.8rem, 6.8vw, 6rem);
       letter-spacing: .01em;
       background: linear-gradient(180deg, #fff, #c6c6ff 35%, #9b93ff 65%, #fff 90%);
       -webkit-background-clip: text; background-clip: text; color: transparent;
       filter: drop-shadow(0 12px 22px rgba(145,132,255,.25));
     }
-
     .lead {
       font-size: clamp(1.05rem, 1.6vw, 1.4rem);
-      color: var(--muted);
-      max-width: 60ch; line-height: 1.65;
+      color: var(--muted); max-width: 60ch; line-height: 1.65;
       margin: 0 0 2rem;
     }
-
     .ctaRow { display: flex; flex-wrap: wrap; gap: .9rem; align-items: center; }
-
     .btn {
       --ring: rgba(255,255,255,.35);
-      position: relative; isolation: isolate;
       padding: .95rem 1.35rem; border-radius: 16px; border: 0; cursor: pointer;
       font-weight: 800; letter-spacing: .02em; text-transform: uppercase;
       box-shadow: 0 8px 30px rgba(0,0,0,.35);
       transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+      background: none; color: inherit; text-decoration: none; display: inline-block;
     }
     .btn-primary {
       background: radial-gradient(120% 180% at 10% 10%, #fff5, transparent 40%),
                   linear-gradient(120deg, var(--acc1), var(--acc2));
-      color: #0b0b16;
-      filter: saturate(120%);
+      color: #0b0b16; filter: saturate(120%);
     }
     .btn-ghost {
       background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.06));
-      color: var(--text);
-      border: 1px solid rgba(255,255,255,.2);
+      color: var(--text); border: 1px solid rgba(255,255,255,.2);
       backdrop-filter: blur(6px);
     }
     .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(0,0,0,.5); }
     .btn:active { transform: translateY(0); }
-
-    /* Badge row */
     .badges { display:flex; gap:.6rem; flex-wrap:wrap; margin:1.2rem 0 0; }
     .chip { padding:.45rem .75rem; font-size:.78rem; border-radius:999px; border:1px solid rgba(255,255,255,.2); color: #eaeaff; background: rgba(255,255,255,.06); backdrop-filter: blur(6px); }
-
-    /* Floating deco rings */
     .rings { position:absolute; inset:0; pointer-events:none; z-index:2; }
     .ring { position:absolute; width: 28vmin; height: 28vmin; border: 2px solid rgba(255,255,255,.16); border-radius:50%; filter: drop-shadow(0 2px 20px rgba(0,0,0,.25)); animation: float 12s ease-in-out infinite; }
     .ring:nth-child(1){ top:-8vmin; right:-4vmin; animation-delay:-2s; }
@@ -160,27 +133,71 @@
       0%,100% { transform: translateY(-6px) rotate(0.001deg); }
       50%     { transform: translateY(10px)  rotate(0.001deg); }
     }
-
-    /* Footer note */
     .note { margin-top: 1.4rem; font-size:.9rem; color:#d7d7ffcc; opacity:.9 }
-
-    /* Parallax tilt */
     .tilt { transform-style: preserve-3d; perspective: 1200px; }
     .lift { transform: translateZ(45px); }
-
-    /* Glow filter */
     .neon-glow { filter: drop-shadow(0 0 20px rgba(91,231,255,.35)) drop-shadow(0 0 50px rgba(255,91,214,.15)); }
-
-    /* Accessibility */
     @media (prefers-reduced-motion: reduce) {
       .aurora, .blob, .stars, .ring, .btn { animation: none !important; }
     }
-
-    /* Responsive tweaks */
     @media (max-width: 640px){
       .hero { padding: 1.5rem; }
       .ring { display:none; }
     }
+
+    /* Modal styles */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 100;
+      background: rgba(0,0,0,.65); backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity .4s ease;
+    }
+    .modal-overlay.active { opacity: 1; pointer-events: auto; }
+    .modal {
+      background: linear-gradient(120deg, rgba(30,10,60,.9), rgba(10,15,35,.85));
+      backdrop-filter: blur(40px) saturate(150%);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 28px; padding: 2.5rem;
+      width: min(420px, 88vw);
+      box-shadow: 0 30px 70px rgba(0,0,0,.7);
+      position: relative;
+      transform: scale(.9) translateY(10px);
+      transition: transform .35s cubic-bezier(.4,0,.2,1);
+    }
+    .modal-overlay.active .modal { transform: scale(1) translateY(0); }
+    .modal-close {
+      position: absolute; top: 1rem; right: 1.2rem;
+      background: none; border: none; color: var(--text);
+      font-size: 1.6rem; cursor: pointer; opacity: .7; transition: .2s;
+    }
+    .modal-close:hover { opacity: 1; }
+    .tab-header { display: flex; gap: 1rem; margin-bottom: 1.8rem; justify-content: center; }
+    .tab-btn {
+      background: transparent; border: none;
+      padding: .6rem 1.2rem; font-weight: 700; letter-spacing: .03em;
+      color: var(--muted); cursor: pointer;
+      border-bottom: 2px solid transparent; transition: .25s;
+    }
+    .tab-btn.active { color: #fff; border-bottom-color: var(--acc2); text-shadow: 0 0 14px var(--acc2); }
+    .form-group { display: flex; flex-direction: column; gap: 1.1rem; }
+    .form-group.hidden { display: none; }
+    .input-field {
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2);
+      border-radius: 12px; padding: .8rem 1rem; color: #fff; font-size: 1rem;
+      outline: none; transition: .2s; backdrop-filter: blur(6px);
+    }
+    .input-field:focus { border-color: var(--acc2); box-shadow: 0 0 16px rgba(91,231,255,.3); }
+    .input-field::placeholder { color: #aaa; }
+    .form-btn {
+      margin-top: .5rem; width: 100%; padding: .9rem; border-radius: 14px;
+      font-weight: 800; text-transform: uppercase; letter-spacing: .04em;
+      background: linear-gradient(120deg, var(--acc1), var(--acc2));
+      border: none; color: #0b0b16; cursor: pointer;
+      box-shadow: 0 8px 30px rgba(0,0,0,.35); transition: .25s;
+    }
+    .form-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .msg { margin-top: .8rem; font-size: .85rem; color: var(--acc3); text-align: center; min-height: 1.2rem; }
+    .msg.error { color: #ff5f57; }
   </style>
 </head>
 <body>
@@ -200,7 +217,8 @@
       <p class="lead lift">Эта стартовая страница создана, чтобы с первого взгляда выбить почву из-под ног и оставить только <em>вау</em>. Живая аура, стеклянные панели, неоновый свет и небесные искры — всё для того, чтобы наш сайт запомнили с первого клика.</p>
 
       <div class="ctaRow lift">
-        <a class="btn btn-primary" href="voiti.html" id="enter">Войти на сайт</a>
+        <button class="btn btn-primary" id="showLoginBtn">Войти</button>
+        <button class="btn btn-ghost" id="showRegisterBtn">Регистрация</button>
         <a class="btn btn-ghost" href="Newpage.html">Узнать больше</a>
       </div>
 
@@ -220,7 +238,33 @@
     </section>
   </main>
 
-  <!-- SVG filters for extra shine (optional) -->
+  <!-- Модальное окно -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal">
+      <button class="modal-close" id="closeModalBtn">&times;</button>
+      <div class="tab-header">
+        <button class="tab-btn active" data-tab="login">Вход</button>
+        <button class="tab-btn" data-tab="register">Регистрация</button>
+      </div>
+
+      <div class="form-group" id="loginForm">
+        <input type="email" class="input-field" id="loginEmail" placeholder="Email" autocomplete="email">
+        <input type="password" class="input-field" id="loginPassword" placeholder="Пароль" autocomplete="current-password">
+        <button class="form-btn" id="loginSubmit">Войти</button>
+        <div class="msg" id="loginMsg"></div>
+      </div>
+
+      <div class="form-group hidden" id="registerForm">
+        <input type="text" class="input-field" id="regName" placeholder="Имя" autocomplete="name">
+        <input type="email" class="input-field" id="regEmail" placeholder="Email" autocomplete="email">
+        <input type="password" class="input-field" id="regPassword" placeholder="Пароль" autocomplete="new-password">
+        <input type="password" class="input-field" id="regPasswordConfirm" placeholder="Подтвердите пароль">
+        <button class="form-btn" id="registerSubmit">Зарегистрироваться</button>
+        <div class="msg" id="registerMsg"></div>
+      </div>
+    </div>
+  </div>
+
   <svg width="0" height="0" style="position:absolute">
     <defs>
       <filter id="glow">
@@ -234,43 +278,152 @@
   </svg>
 
   <script>
-    // Subtle 3D tilt based on mouse position
-    (function(){
+    (function() {
+      // Визуальные эффекты (tilt, ripple)
       const card = document.querySelector('.hero');
-      const strength = 10; // degrees
-      function tilt(e){
+      const strength = 10;
+      function tilt(e) {
         const r = card.getBoundingClientRect();
         const px = (e.clientX - r.left) / r.width - 0.5;
         const py = (e.clientY - r.top) / r.height - 0.5;
-        const rx = (+py * strength).toFixed(2);
-        const ry = (-px * strength).toFixed(2);
-        card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+        card.style.transform = `rotateX(${(py * strength).toFixed(2)}deg) rotateY(${(-px * strength).toFixed(2)}deg)`;
       }
-      function reset(){ card.style.transform = 'rotateX(0) rotateY(0)'; }
       card.addEventListener('mousemove', tilt);
-      card.addEventListener('mouseleave', reset);
-    })();
+      card.addEventListener('mouseleave', () => card.style.transform = 'rotateX(0) rotateY(0)');
 
-    // Click glow pulse
-    (function(){
-      const btns = document.querySelectorAll('.btn');
-      btns.forEach(b => b.addEventListener('click', e => {
+      document.querySelectorAll('.btn').forEach(b => b.addEventListener('click', e => {
         const x = e.offsetX, y = e.offsetY;
         const pulse = document.createElement('span');
-        pulse.style.position='absolute';
-        pulse.style.inset='0';
-        pulse.style.background=`radial-gradient(600px 600px at ${x}px ${y}px, rgba(255,255,255,.35), transparent 40%)`;
-        pulse.style.borderRadius='inherit';
-        pulse.style.mixBlendMode='overlay';
-        pulse.style.pointerEvents='none';
-        pulse.style.filter='blur(10px)';
-        pulse.style.opacity='0';
-        pulse.style.transition='opacity .6s ease';
+        pulse.style.cssText = `
+          position:absolute; inset:0;
+          background:radial-gradient(600px 600px at ${x}px ${y}px, rgba(255,255,255,.35), transparent 40%);
+          border-radius:inherit; mix-blend-mode:overlay; pointer-events:none;
+          filter:blur(10px); opacity:0; transition:opacity .6s ease;
+        `;
         b.appendChild(pulse);
-        requestAnimationFrame(()=>{ pulse.style.opacity='1'; });
-        setTimeout(()=>{ pulse.style.opacity='0'; }, 60);
-        setTimeout(()=> pulse.remove(), 700);
+        requestAnimationFrame(() => { pulse.style.opacity = '1'; });
+        setTimeout(() => { pulse.style.opacity = '0'; }, 60);
+        setTimeout(() => pulse.remove(), 700);
       }));
+
+      // ---------- РЕГИСТРАЦИЯ / ВХОД (с редиректом) ----------
+      const STORAGE_KEY = 'soul_users';
+      const getUsers = () => JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      const saveUsers = users => localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+
+      const authModal = document.getElementById('authModal');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+      const tabButtons = document.querySelectorAll('.tab-btn');
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+      const loginMsg = document.getElementById('loginMsg');
+      const registerMsg = document.getElementById('registerMsg');
+
+      const showLoginBtn = document.getElementById('showLoginBtn');
+      const showRegisterBtn = document.getElementById('showRegisterBtn');
+
+      const loginEmail = document.getElementById('loginEmail');
+      const loginPassword = document.getElementById('loginPassword');
+      const loginSubmit = document.getElementById('loginSubmit');
+      const regName = document.getElementById('regName');
+      const regEmail = document.getElementById('regEmail');
+      const regPassword = document.getElementById('regPassword');
+      const regPasswordConfirm = document.getElementById('regPasswordConfirm');
+      const registerSubmit = document.getElementById('registerSubmit');
+
+      let activeTab = 'login';
+
+      function openModal(tab = 'login') {
+        authModal.classList.add('active');
+        setActiveTab(tab);
+        loginMsg.textContent = '';
+        registerMsg.textContent = '';
+      }
+      function closeModal() { authModal.classList.remove('active'); }
+      function setActiveTab(tab) {
+        activeTab = tab;
+        tabButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
+        if (tab === 'login') {
+          loginForm.classList.remove('hidden');
+          registerForm.classList.add('hidden');
+        } else {
+          registerForm.classList.remove('hidden');
+          loginForm.classList.add('hidden');
+        }
+      }
+
+      // Функция редиректа после успешной аутентификации
+      function redirectToSite(user) {
+        sessionStorage.setItem('currentUser', JSON.stringify(user));
+        // Замените 'voiti.html' на нужный URL вашего сайта
+        window.location.href = 'voiti.html';
+      }
+
+      showLoginBtn.addEventListener('click', () => openModal('login'));
+      showRegisterBtn.addEventListener('click', () => openModal('register'));
+      closeModalBtn.addEventListener('click', closeModal);
+      authModal.addEventListener('click', (e) => { if (e.target === authModal) closeModal(); });
+      tabButtons.forEach(btn => btn.addEventListener('click', () => setActiveTab(btn.dataset.tab)));
+
+      // Вход
+      loginSubmit.addEventListener('click', () => {
+        const email = loginEmail.value.trim();
+        const password = loginPassword.value;
+        loginMsg.textContent = ''; loginMsg.className = 'msg';
+        if (!email || !password) {
+          loginMsg.textContent = 'Введите email и пароль.';
+          loginMsg.classList.add('error');
+          return;
+        }
+        const users = getUsers();
+        const user = users.find(u => u.email === email.toLowerCase() && u.password === password);
+        if (!user) {
+          loginMsg.textContent = 'Неверный email или пароль.';
+          loginMsg.classList.add('error');
+          return;
+        }
+        redirectToSite(user);
+      });
+
+      // Регистрация
+      registerSubmit.addEventListener('click', () => {
+        const name = regName.value.trim();
+        const email = regEmail.value.trim();
+        const password = regPassword.value;
+        const confirm = regPasswordConfirm.value;
+
+        registerMsg.textContent = ''; registerMsg.className = 'msg';
+        if (!name || !email || !password || !confirm) {
+          registerMsg.textContent = 'Все поля обязательны.';
+          registerMsg.classList.add('error');
+          return;
+        }
+        if (password.length < 6) {
+          registerMsg.textContent = 'Пароль должен быть не менее 6 символов.';
+          registerMsg.classList.add('error');
+          return;
+        }
+        if (password !== confirm) {
+          registerMsg.textContent = 'Пароли не совпадают.';
+          registerMsg.classList.add('error');
+          return;
+        }
+        const users = getUsers();
+        if (users.some(u => u.email === email.toLowerCase())) {
+          registerMsg.textContent = 'Пользователь с таким email уже существует.';
+          registerMsg.classList.add('error');
+          return;
+        }
+        const newUser = { name, email: email.toLowerCase(), password };
+        users.push(newUser);
+        saveUsers(users);
+        redirectToSite(newUser);
+      });
+
+      // Стиль для скрытых элементов
+      const style = document.createElement('style');
+      style.textContent = '.hidden { display: none !important; }';
+      document.head.appendChild(style);
     })();
   </script>
 </body>
